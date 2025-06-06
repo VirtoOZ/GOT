@@ -8,7 +8,6 @@ const root = document.querySelector("#root")
 	? document.querySelector("#root")
 	: document.querySelector(".wrapper");
 
-
 // Main rendering
 ReactDOM.createRoot(root).render(
 	<React.StrictMode>

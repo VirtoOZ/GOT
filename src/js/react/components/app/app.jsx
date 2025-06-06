@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import AppHeader from "../app-header/app-header.jsx";
+import AppHeader from "../header/header.jsx";
 import "./app.scss";
 
 export default class App extends Component {
@@ -12,6 +12,9 @@ export default class App extends Component {
 		return (
 			<div className="app">
 				<AppHeader />
+				<div className="wrapper__bg">
+					<img src="img/got.jpeg" alt="got.jpeg" />
+				</div>
 			</div>
 		);
 	}
