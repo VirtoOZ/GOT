@@ -1,5 +1,32 @@
 import React, { Component } from "react";
-import "./randomCharacter.scss"
+// import "./randomCharacter.scss"
+import styled from "styled-components";
+import { ListBlock, ItemBlock, ItemLabelBlock, ItemValueBlock } from "../app/app.jsx";
+
+
+//<СТИЛИ>=================================
+
+// const ItemBlock = styled.li`
+// 	padding: 10px 0;
+// 	display: flex;
+// 	justify-content: space-between;
+// `;
+
+const ItemTitleBlock = styled.div`
+	display: flex;
+		justify-content: center;
+		font-weight: 700;
+		font-size: 25px;
+`;
+
+// const ItemLabelBlock = styled.span`
+// 	font-weight: 700;
+// `;
+
+// const ItemValueBlock = styled.span`
+// `;
+//</СТИЛИ>=================================
+
 
 export default class RandomCharacter extends Component {
 	constructor(props) {
@@ -8,27 +35,27 @@ export default class RandomCharacter extends Component {
 
 	render() {
 		return (
-			<ul className="haracter-list list">
-				<div className="list__item_name">Random Character:
-					<span className="list__">John</span>
-				</div>
-				<li className="list__item">
-					<span className="list__">Gender</span>
-					<span className="list__">male</span>
-				</li>
-				<li className="list__item">
-					<span className="list__">Born</span>
-					<span className="list__">11.03.1039</span>
-				</li>
-				<li className="list__item">
-					<span className="list__">Dies</span>
-					<span className="list__">13.09.1089</span>
-				</li>
-				<li className="list__item">
-					<span className="list__">Culture</span>
-					<span className="list__">Anarchy</span>
-				</li>
-			</ul>
+			<ListBlock>
+				<ItemTitleBlock>Random Character:
+					<ItemValueBlock> John</ItemValueBlock>
+				</ItemTitleBlock>
+				<ItemBlock>
+					<ItemLabelBlock>Gender</ItemLabelBlock>
+					<ItemValueBlock>male</ItemValueBlock>
+				</ItemBlock>
+				<ItemBlock>
+					<ItemLabelBlock>Born</ItemLabelBlock>
+					<ItemValueBlock>11.03.1039</ItemValueBlock>
+				</ItemBlock>
+				<ItemBlock>
+					<ItemLabelBlock>Dies</ItemLabelBlock>
+					<ItemValueBlock>13.09.1089</ItemValueBlock>
+				</ItemBlock>
+				<ItemBlock>
+					<ItemLabelBlock>Culture</ItemLabelBlock>
+					<ItemValueBlock>Anarchy</ItemValueBlock>
+				</ItemBlock>
+			</ListBlock>
 		)
 	}
 }

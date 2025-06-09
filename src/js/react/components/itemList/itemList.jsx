@@ -1,5 +1,20 @@
 import React, { Component } from "react";
 import "./itemList.scss"
+// import styled from "styled-components";
+import { ListBlock, ItemBlock, ItemLabelBlock, ItemValueBlock } from "../app/app.jsx";
+
+
+//<СТИЛИ>=================================
+
+// const ItemBlock = styled.li`
+// 	padding: 10px 0;
+// 	display: flex;
+// 	justify-content: space-between;
+// `;
+
+// const ItemValueBlock = styled.span`
+// `;
+//</СТИЛИ>=================================
 
 export default class ItemList extends Component {
 	constructor(props) {
@@ -8,17 +23,17 @@ export default class ItemList extends Component {
 
 	render() {
 		return (
-			<ul className="haracter-list list">
-				<li className="list__item">
-					<span className="list__">John</span>
-				</li>
-				<li className="list__item">
-					<span className="list__">Gender</span>
-				</li>
-				<li className="list__item">
-					<span className="list__">Born</span>
-				</li>
-			</ul>
+			<ListBlock>
+				<ItemBlock>
+					<ItemValueBlock>John Snow</ItemValueBlock>
+				</ItemBlock>
+				<ItemBlock>
+					<ItemValueBlock>Brandon Stark</ItemValueBlock>
+				</ItemBlock>
+				<ItemBlock>
+					<ItemValueBlock>Geremy</ItemValueBlock>
+				</ItemBlock>
+			</ListBlock>
 		)
 	}
 }
