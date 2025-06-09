@@ -3,7 +3,6 @@ import AppHeader from "../header/header.jsx";
 import RandomCharacter from "../randomCharacter/randomCharacter.jsx";
 import DetalesCharacter from "../detalesCharacter/detalesCharacter.jsx";
 import ItemList from "../itemList/itemList.jsx";
-import GotService from "../../services/gotService.jsx";
 // import "./app.scss";
 import styled from "styled-components";
 
@@ -51,7 +50,7 @@ const MainBgBlock = styled.div`
 const ListBlock = styled.ul`
 	position: relative;
 	z-index: 2;
-	flex: 0 1 33.333%;
+	flex: 0 1 40%;
 	padding: 30px;
 	background-color: #fff;
 	border-radius: 5px;
@@ -90,7 +89,7 @@ const ItemValueBlock = styled.span`
 `;
 //</СТИЛИ>=================================
 
-const got = new GotService();
+// const got = new GotService();
 // got.getAllCharacters().then(res => {
 // 	return res.forEach(element => {
 // 		if (element.name) {

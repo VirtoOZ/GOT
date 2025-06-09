@@ -2,6 +2,7 @@ import React, { Component } from "react";
 // import "./randomCharacter.scss"
 import styled from "styled-components";
 import { ListBlock, ItemBlock, ItemLabelBlock, ItemValueBlock } from "../app/app.jsx";
+import gotService from "../../services/gotService.jsx";
 
 
 //<СТИЛИ>=================================
@@ -16,7 +17,7 @@ const ItemTitleBlock = styled.div`
 	display: flex;
 		justify-content: center;
 		font-weight: 700;
-		font-size: 25px;
+		font-size: 22px;
 `;
 
 // const ItemLabelBlock = styled.span`
@@ -29,31 +30,57 @@ const ItemTitleBlock = styled.div`
 
 
 export default class RandomCharacter extends Component {
-	constructor(props) {
-		super(props);
+
+	constructor() {
+		super();
+		this.updateCharacter();
 	}
 
+	gotService = new gotService();
+	state = {
+		name: null,
+		gender: null,
+		born: null,
+		died: null,
+		culture: null,
+	}
+	updateCharacter() {
+		const id = Math.floor(Math.random() * 140 + 25);
+		this.gotService.getCharacter(id)
+			.then((res) => {
+				this.setState({
+					name: res.name,
+					gender: res.gender,
+					born: res.born,
+					died: res.died,
+					culture: res.culture,
+				})
+			});
+	}
+
+
 	render() {
+		const { name, gender, born, died, culture } = this.state;
 		return (
 			<ListBlock>
 				<ItemTitleBlock>Random Character:
-					<ItemValueBlock> John</ItemValueBlock>
+					<ItemValueBlock> {name}</ItemValueBlock>
 				</ItemTitleBlock>
 				<ItemBlock>
 					<ItemLabelBlock>Gender</ItemLabelBlock>
-					<ItemValueBlock>male</ItemValueBlock>
+					<ItemValueBlock>{gender}</ItemValueBlock>
 				</ItemBlock>
 				<ItemBlock>
 					<ItemLabelBlock>Born</ItemLabelBlock>
-					<ItemValueBlock>11.03.1039</ItemValueBlock>
+					<ItemValueBlock>{born}</ItemValueBlock>
 				</ItemBlock>
 				<ItemBlock>
 					<ItemLabelBlock>Dies</ItemLabelBlock>
-					<ItemValueBlock>13.09.1089</ItemValueBlock>
+					<ItemValueBlock>{died}</ItemValueBlock>
 				</ItemBlock>
 				<ItemBlock>
 					<ItemLabelBlock>Culture</ItemLabelBlock>
-					<ItemValueBlock>Anarchy</ItemValueBlock>
+					<ItemValueBlock>{culture}</ItemValueBlock>
 				</ItemBlock>
 			</ListBlock>
 		)
