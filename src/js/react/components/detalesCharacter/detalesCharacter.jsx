@@ -21,8 +21,8 @@ import { ListBlock, ItemBlock, ItemLabelBlock, ItemValueBlock } from "../app/app
 //</СТИЛИ>=================================
 
 export default class DetalesCharacter extends Component {
-	constructor(props) {
-		super(props);
+	constructor() {
+		super();
 	}
 
 	render() {

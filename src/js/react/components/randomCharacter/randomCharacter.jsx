@@ -29,38 +29,85 @@ const ItemTitleBlock = styled.div`
 //</СТИЛИ>=================================
 
 
+
 export default class RandomCharacter extends Component {
 
 	constructor() {
 		super();
-		this.updateCharacter();
+		// this.data = [
+		// 	{
+		// 		name: 'Aron Bolt',
+		// 		gender: 'Male',
+		// 		born: '1058',
+		// 		died: '',
+		// 		culture: 'Noth',
+		// 	}
+		// ]
 	}
 
 	gotService = new gotService();
+
+	// state = {
+	// 	name: null,
+	// 	gender: null,
+	// 	born: null,
+	// 	died: null,
+	// 	culture: null,
+	// }
+
 	state = {
-		name: null,
-		gender: null,
-		born: null,
-		died: null,
-		culture: null,
+		res: {}
 	}
+
+	componentDidMount() {
+		this.updateCharacter();
+		// console.log(this.data);
+	}
+
+	// onCharLoaded = (res) => {
+	// 	this.setState({ res });
+	// }
+
+	onCharLoaded = (res) => {
+		this.modifiedData(res);
+		this.setState({ res });
+	}
+
+	// modifiedDatas = (data) => {
+	// 	data.map((item) => {
+	// 		addComents = (elem) => {
+	// 			item.elem ? item.elem : item.elem = 'нет данных';
+	// 		};
+	// 		addComents(name);
+	// 		addComents(gender);
+	// 		addComents(born);
+	// 		addComents(died);
+	// 		addComents(culture);
+
+	// item.name ? item.name : item.name = 'нет данных';
+	// item.gender ? item.gender : item.gender = 'нет данных';
+	// item.born ? item.born : item.born = 'нет данных';
+	// item.died ? item.died : item.died = 'нет данных';
+	// item.culture ? item.culture : item.culture = 'нет данных';
+	// })
+	// }
+
+	modifiedData = (data) => {
+		data.name ? data.name : data.name = 'нет данных';
+		data.gender ? data.gender : data.gender = 'нет данных';
+		data.born ? data.born : data.born = 'нет данных';
+		data.died ? data.died : data.died = 'нет данных';
+		data.culture ? data.culture : data.culture = 'нет данных';
+	}
+
 	updateCharacter() {
 		const id = Math.floor(Math.random() * 140 + 25);
 		this.gotService.getCharacter(id)
-			.then((res) => {
-				this.setState({
-					name: res.name,
-					gender: res.gender,
-					born: res.born,
-					died: res.died,
-					culture: res.culture,
-				})
-			});
+			.then(this.onCharLoaded);
 	}
 
-
 	render() {
-		const { name, gender, born, died, culture } = this.state;
+		const { res: { name, gender, born, died, culture } } = this.state;
 		return (
 			<ListBlock>
 				<ItemTitleBlock>Random Character:
@@ -82,7 +129,7 @@ export default class RandomCharacter extends Component {
 					<ItemLabelBlock>Culture</ItemLabelBlock>
 					<ItemValueBlock>{culture}</ItemValueBlock>
 				</ItemBlock>
-			</ListBlock>
+			</ListBlock >
 		)
 	}
 }
