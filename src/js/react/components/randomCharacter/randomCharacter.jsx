@@ -1,17 +1,12 @@
 import React, { Component } from "react";
 // import "./randomCharacter.scss"
 import styled from "styled-components";
-import { ListBlock, ItemBlock, ItemLabelBlock, ItemValueBlock } from "../app/app.jsx";
+import { ListBlock, ItemBlock, ItemLabelBlock, ItemValueBlock, SpinnerBlock } from "../app/app.jsx";
 import gotService from "../../services/gotService.jsx";
-
+import Spinner from "../spinner/spinner.jsx";
+import ErrorMessage from "../errorMessage/errorMessage.jsx";
 
 //<СТИЛИ>=================================
-
-// const ItemBlock = styled.li`
-// 	padding: 10px 0;
-// 	display: flex;
-// 	justify-content: space-between;
-// `;
 
 const ItemTitleBlock = styled.div`
 	display: flex;
@@ -20,12 +15,6 @@ const ItemTitleBlock = styled.div`
 		font-size: 22px;
 `;
 
-// const ItemLabelBlock = styled.span`
-// 	font-weight: 700;
-// `;
-
-// const ItemValueBlock = styled.span`
-// `;
 //</СТИЛИ>=================================
 
 
@@ -34,15 +23,6 @@ export default class RandomCharacter extends Component {
 
 	constructor() {
 		super();
-		// this.data = [
-		// 	{
-		// 		name: 'Aron Bolt',
-		// 		gender: 'Male',
-		// 		born: '1058',
-		// 		died: '',
-		// 		culture: 'Noth',
-		// 	}
-		// ]
 	}
 
 	gotService = new gotService();
@@ -56,21 +36,28 @@ export default class RandomCharacter extends Component {
 	// }
 
 	state = {
-		res: {}
+		res: {},
+		loading: true,
+		error: false,
+	}
+
+	onError = (err) => {
+		this.setState({
+			error: true,
+			loading: false,
+		})
 	}
 
 	componentDidMount() {
 		this.updateCharacter();
-		// console.log(this.data);
 	}
-
-	// onCharLoaded = (res) => {
-	// 	this.setState({ res });
-	// }
 
 	onCharLoaded = (res) => {
 		this.modifiedData(res);
-		this.setState({ res });
+		this.setState({
+			res,
+			loading: false,
+		});
 	}
 
 	// modifiedDatas = (data) => {
@@ -101,35 +88,52 @@ export default class RandomCharacter extends Component {
 	}
 
 	updateCharacter() {
-		const id = Math.floor(Math.random() * 140 + 25);
+		// const id = 15000000;
+		const id = Math.floor(Math.random() * 50 + 25);
 		this.gotService.getCharacter(id)
-			.then(this.onCharLoaded);
+			.then(this.onCharLoaded)
+			.catch(this.onError);
 	}
 
 	render() {
-		const { res: { name, gender, born, died, culture } } = this.state;
+		const { res, loading, error } = this.state;
+
+		const errorMessage = error ? <ErrorMessage /> : null;
+		const spinner = loading ? <Spinner /> : null;
+		const content = !(loading || error) ? <View res={res} /> : null;
 		return (
 			<ListBlock>
-				<ItemTitleBlock>Random Character:
-					<ItemValueBlock> {name}</ItemValueBlock>
-				</ItemTitleBlock>
-				<ItemBlock>
-					<ItemLabelBlock>Gender</ItemLabelBlock>
-					<ItemValueBlock>{gender}</ItemValueBlock>
-				</ItemBlock>
-				<ItemBlock>
-					<ItemLabelBlock>Born</ItemLabelBlock>
-					<ItemValueBlock>{born}</ItemValueBlock>
-				</ItemBlock>
-				<ItemBlock>
-					<ItemLabelBlock>Dies</ItemLabelBlock>
-					<ItemValueBlock>{died}</ItemValueBlock>
-				</ItemBlock>
-				<ItemBlock>
-					<ItemLabelBlock>Culture</ItemLabelBlock>
-					<ItemValueBlock>{culture}</ItemValueBlock>
-				</ItemBlock>
-			</ListBlock >
+				{errorMessage}
+				{spinner}
+				{content}
+			</ListBlock>
 		)
 	}
 }
+
+const View = ({ res }) => {
+	const { name, gender, born, died, culture } = res;
+	return (
+		<ListBlock>
+			<ItemTitleBlock>Random Character:
+				<ItemValueBlock> {name}</ItemValueBlock>
+			</ItemTitleBlock>
+			<ItemBlock>
+				<ItemLabelBlock>Gender</ItemLabelBlock>
+				<ItemValueBlock>{gender}</ItemValueBlock>
+			</ItemBlock>
+			<ItemBlock>
+				<ItemLabelBlock>Born</ItemLabelBlock>
+				<ItemValueBlock>{born}</ItemValueBlock>
+			</ItemBlock>
+			<ItemBlock>
+				<ItemLabelBlock>Dies</ItemLabelBlock>
+				<ItemValueBlock>{died}</ItemValueBlock>
+			</ItemBlock>
+			<ItemBlock>
+				<ItemLabelBlock>Culture</ItemLabelBlock>
+				<ItemValueBlock>{culture}</ItemValueBlock>
+			</ItemBlock>
+		</ListBlock >
+	)
+};

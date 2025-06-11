@@ -94,27 +94,25 @@ export default class GotService {
 		"url": "https://www.anapioficeandfire.com/api/characters/823"
 	}
 
-	// async getResurse(url) {
-	// const res = await fetch(`${this._apiBase}${url}`);
-
-	// if (!res.ok) {
-	// 	throw new Error(`Could not fetch ${url}, status: ${res.status}`);
-	// }
-
-	// return await res.json();
-	// };
-
 	async getResurse(url) {
-		//Для всех элементов
-		// const res = this.data;
+		const res = await fetch(`${this._apiBase}${url}`);
 
-		//Для одного элемента
-		const res = this.data;
+		if (!res.ok) {
+			throw new Error(`Could not fetch ${url}, status: ${res.status}`);
+		}
 
-		// return console.log(res);
-		return res;
+		return await res.json();
 	};
 
+	// async getResurse(url) {
+	// 	//Для всех элементов
+	// 	// const res = this.data;
+
+	// 	//Для одного элемента
+	// 	const res = this.data;
+	// 	// return console.log(res);
+	// 	return res;
+	// };
 
 	//<Получение нужных данных от API>=================================
 	async getAllCharacters() {

@@ -17,7 +17,7 @@ const MainBlock = styled.main`
 `;
 
 const SectionBlock = styled.section`
-margin: 0px 0px 30px 0px;
+	margin: 0px 0px 30px 0px;
 `;
 
 const PageBoxBlock = styled.div`
@@ -50,9 +50,9 @@ const MainBgBlock = styled.div`
 const ListBlock = styled.ul`
 	position: relative;
 	z-index: 2;
-	flex: 0 1 40%;
+	flex: 0 1 45%;
 	padding: 30px;
-	background-color: #fff;
+	background: #fff;
 	border-radius: 5px;
 	transition: box-shadow 0.3s ease 0s;
 	& > :not(:last-child) {
@@ -82,10 +82,12 @@ const ItemBlock = styled.li`
 `;
 
 const ItemLabelBlock = styled.span`
-	font-weight: 700;
+	font-weight: 500;
 `;
 
 const ItemValueBlock = styled.span`
+	margin: 0 0 0 10px;
+	color: green;
 `;
 //</СТИЛИ>=================================
 
