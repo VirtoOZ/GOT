@@ -6,7 +6,7 @@ import { Header, Footer, ErrorMessage } from "../ui";
 import { ListDetalesSection, RandomSection } from "../Pages";
 import { Intro } from "../Pages/Page/Intro/Intro";
 
-const App: FC = () => {
+export const App: FC = () => {
 	const { errorStatus } = useGotData();
 
 	const character = () => {
@@ -44,4 +44,3 @@ const App: FC = () => {
 		</div>
 	);
 };
-export default App;
