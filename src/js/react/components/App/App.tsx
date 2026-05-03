@@ -31,6 +31,7 @@ const App: FC = () => {
 					<Intro />
 					{
 						<Routes>
+							<Route path="/" element={character()} />
 							<Route path="/GOT/" element={character()} />
 							<Route path="/characters/" element={character()} />
 						</Routes>
