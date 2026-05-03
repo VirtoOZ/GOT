@@ -1,0 +1,23 @@
+@use "../abstracts/" as *;
+
+.characters {
+	&__wrapper > :not(:last-child) {
+		margin-bottom: rems(20);
+	}
+	&__wrapper {
+		gap: rems(30);
+	}
+	&__body {
+		flex: 0 1 50%;
+	}
+	&__list span {
+		cursor: pointer;
+	}
+	&__list {
+	}
+	@media (min-width: $mobile) {
+		&__wrapper {
+			display: flex;
+		}
+	}
+}

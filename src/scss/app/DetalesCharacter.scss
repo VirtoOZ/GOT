@@ -1,0 +1,45 @@
+@use "../abstracts/" as *;
+
+.characters .random-char {
+	& > :not(:last-child) {
+	}
+	&__wrapper {
+	}
+	&__body {
+	}
+	&__list {
+	}
+	&__item {
+	}
+	&__label {
+	}
+	&__value {
+	}
+	&__value-title {
+	}
+	&__btn {
+		padding: rems(8) rems(30);
+		background-color: blue;
+		border-radius: rems(10);
+		border: 1px solid #999;
+		color: #fff;
+		position: relative;
+		z-index: 2;
+		font-size: rems(20);
+		font-weight: 700;
+		transition:
+			transform 0.3s ease 0s,
+			box-shadow 0.3s ease 0s;
+		@media (any-hover: hover) {
+			&:hover {
+				transform: translate(0, 1px);
+				box-shadow: 0 0 rems(15) #fff;
+			}
+		}
+	}
+	@media (min-width: $mobile) {
+		&__wrapper {
+			display: block;
+		}
+	}
+}

@@ -1,0 +1,89 @@
+@use "../abstracts" as *;
+@use "sass:math";
+
+//<HEADER>=================================
+
+.header {
+	position: relative;
+	z-index: 2;
+	// .header__wrapper
+	&__wrapper {
+	}
+	// .header__container
+	&__container {
+	}
+	// .header__body
+	&__body {
+		display: flex;
+		align-items: center;
+		// justify-content: space-between;
+		@include AV("column-gap", 30, 10);
+	}
+	// .header__name
+	&__name {
+		flex: 1 1 auto;
+		// flex: 0 0 25%;
+		color: #fff;
+		transition: color 0.3s ease 0s;
+		@include AV("font-size", 40, 25);
+		@include AV("padding-top", 20, 10);
+		@include AV("padding-bottom", 20, 10);
+		@media (any-hover: hover) {
+			&:hover {
+				color: RED;
+			}
+		}
+	}
+	// .header__menu
+	&__menu {
+		flex: 1 1 auto;
+	}
+	// .header__icon
+	&__icon {
+	}
+}
+.menu {
+	// .menu__icon
+	&__icon {
+		display: none;
+	}
+	// .menu__body
+	&__body {
+	}
+	// .menu__list
+	&__list {
+		@media (min-width: $mobileSmall) {
+			display: flex;
+			justify-content: flex-end;
+			flex-wrap: wrap;
+			@include AV("column-gap", 30, 10);
+		}
+	}
+	// .menu__item
+	&__item {
+	}
+	// .menu__link
+	&__link {
+		color: #fff;
+		// padding: 25px 0;
+		transition: color 0.3s ease 0s;
+		@include AV("font-size", 30, 18);
+		@include AV("padding-top", 25, 10);
+		@include AV("padding-bottom", 25, 10);
+		@media (any-hover: hover) {
+			&:hover {
+				color: RED;
+			}
+		}
+	}
+
+	&__disable {
+		color: #666;
+		pointer-events: none;
+		@media (any-hover: hover) {
+			&:hover {
+				color: #666;
+			}
+		}
+	}
+}

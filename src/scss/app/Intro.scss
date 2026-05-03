@@ -1,0 +1,39 @@
+@use "../abstracts/" as *;
+
+.intro {
+	height: 100%;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 5;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #000;
+	overflow: hidden;
+	&__wrapper {
+	}
+	&__content span {
+		color: yellowgreen;
+	}
+	&__content p {
+		color: #fff;
+		font-size: rems(30);
+	}
+	&__content > :not(:last-child) {
+		margin-bottom: rems(20);
+	}
+	&__content {
+		border: rems(5) solid yellow;
+		border-radius: rems(30);
+		padding: rems(30);
+		background-color: #707070;
+	}
+	&__text {
+	}
+}
+.intro.hide {
+	display: none;
+}
